@@ -44,7 +44,7 @@ const checkVinNumberValid = async (req, res, next) => {
 }
 
 const checkVinNumberUnique = async (req, res, next) => {
-  const {vin} = req.body;
+  const {vin} = req.body
   const cars = await Cars.getAll();
   cars.map(car => {
     if (car.vin === vin) {
