@@ -34,13 +34,13 @@ const checkCarPayload = (req, res, next) => {
   }
 }
 
-const checkVinNumberValid = (req, res, next) => {
- const check = vinValidator.validate(req.body.vin)
- if (check === false) {
-  next()
- } else {
-  res.status(400).json({message: `vin ${req.body.vin} is invalid`})
- }
+const checkVinNumberValid = async (req, res, next) => {
+  const check = await vinValidator.validate(req.body.vin)
+  if (check === true) {
+    next()
+  } else {
+    res.status(400).json({message: `vin ${req.body.vin} is invalid`})
+  }
 }
 
 const checkVinNumberUnique = async (req, res, next) => {
